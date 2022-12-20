@@ -1,8 +1,4 @@
-# FUSB302_ESP32
-Example with ESP32 and FUSB302
+# FUSB302B with ESP32
+Works fine with any PD charger.
 
-This example uses the library (V4.1.1) provided by ON Semi.
-
-The main loop verifies if there is any interrupt from GPIO pin or timer and process the USB Type C state.
-
-When an event happens (connect, disconnect), the main `if` from `while (1)` will be called multiple times. There will be a console message when the Type C protocol finished the communication.
+Code based on [FUSB302_ESP32](https://github.com/tatulea/FUSB302_ESP32) repository and adapted to work with esp-idf library.
