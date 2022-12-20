@@ -29,7 +29,7 @@ FSC_BOOL WriteStateLog(StateLog *log, FSC_U16 state, FSC_U32 time)
 {
     if(!IsStateLogFull(log))
     {
-        FSC_U8 index = log->End;
+        FSC_U16 index = log->End;
         log->logQueue[index].state = state;
         log->logQueue[index].time_s = time >> 16;     /* Upper 16: seconds */
         log->logQueue[index].time_ms = time & 0xFFFF; /* Lower 16: 0.1ms */
@@ -55,7 +55,7 @@ FSC_BOOL ReadStateLog(StateLog *log, FSC_U16 * state,
 {
     if(!IsStateLogEmpty(log))
     {
-        FSC_U8 index = log->Start;
+        FSC_U16 index = log->Start;
         *state = log->logQueue[index].state;
         *time_ms = log->logQueue[index].time_ms;
         *time_s = log->logQueue[index].time_s;
@@ -75,7 +75,7 @@ FSC_BOOL ReadStateLog(StateLog *log, FSC_U16 * state,
     }
 }
 
-FSC_U32 GetStateLog(StateLog *log, FSC_U8 *data, FSC_U8 bufLen)
+FSC_U32 GetStateLog(StateLog *log, FSC_U8 *data, FSC_U16 bufLen)
 {
     FSC_S32 i;
     FSC_S32 entries = log->Count;
@@ -86,15 +86,16 @@ FSC_U32 GetStateLog(StateLog *log, FSC_U8 *data, FSC_U8 bufLen)
 
     for (i = 0; i < entries; i++)
     {
-        if (bufLen < 5 ) { break; }
+        if (bufLen < 6 ) { break; }
         if (ReadStateLog(log, &state_temp, &time_tms_temp, &time_s_temp))
         {
-            data[len++] = state_temp;
+            data[len++] = (FSC_U8) state_temp;
+            data[len++] = (state_temp >> 8);
             data[len++] = (FSC_U8) time_tms_temp;
             data[len++] = (time_tms_temp >> 8);
             data[len++] = (FSC_U8) time_s_temp;
             data[len++] = (time_s_temp) >> 8;
-            bufLen -= 5;
+            bufLen -= 6;
         }
     }
 

@@ -3,10 +3,22 @@
 #include <stdlib.h>
 #include <string.h>
 #include "driver/i2c.h"
+#include "Log.h"
 
 #include "freertos/task.h"
 
+#include "FSCTypes.h"
 #include "defines.h"
+
+static StateLog log;
+
+void platform_log_init() {
+    InitializeStateLog(&log);
+}
+
+FSC_U32 platform_get_log(FSC_U8 *data, FSC_U16 len) {
+    return GetStateLog(&log, data, len);
+}
 
 void platform_set_vbus_lvl_enable(FSC_U8 port,
                                   VBUS_LVL level,
@@ -69,6 +81,14 @@ FSC_BOOL platform_get_device_irq_state(FSC_U8 port)
     return (gpio_get_level(FUSB_INT) == 0) ? TRUE: FALSE;
 }
 
+static void platform_write_log(FSC_BOOL wr, FSC_U8 addr, FSC_U8 val, FSC_U32 time) {
+    FSC_U16 state;
+    if (!wr)
+        addr |= 0x80;
+    state = addr | ((unsigned int)val << 8);
+    WriteStateLog(&log, state, time);
+}
+
 FSC_BOOL platform_i2c_write(FSC_U8 SlaveAddress,
                             FSC_U8 RegAddrLength,
                             FSC_U8 DataLength,
@@ -91,6 +111,12 @@ FSC_BOOL platform_i2c_write(FSC_U8 SlaveAddress,
 
     ret = i2c_master_cmd_begin(I2C_NUM_0, cmd, 10 / portTICK_RATE_MS);
     i2c_cmd_link_delete(cmd);
+
+    FSC_U32 time = platform_get_log_time();
+
+    for (int i = 0; i < DataLength; i++) {
+        platform_write_log(TRUE, RegisterAddress, Data[i], time);
+    }
 
     if (ret == ESP_OK)
     {
@@ -125,6 +151,12 @@ FSC_BOOL platform_i2c_read( FSC_U8 SlaveAddress,
 
     ret = i2c_master_cmd_begin(I2C_NUM_0, cmd, 100 / portTICK_RATE_MS);
     i2c_cmd_link_delete(cmd);
+
+    FSC_U32 time = platform_get_log_time();
+
+    for (int i = 0; i < DataLength; i++) {
+        platform_write_log(FALSE, RegisterAddress, Data[i], time);
+    }
 
     if (ret == ESP_OK)
     {
@@ -166,7 +198,7 @@ FSC_U16 platform_get_pps_current(FSC_U8 port)
 
 FSC_U32 platform_get_system_time(void)
 {
-    return esp_timer_get_time();
+    return esp_timer_get_time() / 1000;
 }
 
 FSC_U32 platform_get_log_time(void)

@@ -21,7 +21,7 @@
 
 #ifdef FSC_DEBUG
 
-#define LOG_SIZE 64
+#define LOG_SIZE 4096
 
 typedef struct{
     FSC_U16 state;
@@ -31,9 +31,9 @@ typedef struct{
 
 typedef struct{
     StateLogEntry logQueue[ LOG_SIZE ];
-    FSC_U8 Start;
-    FSC_U8 End;
-    FSC_U8 Count;
+    FSC_U16 Start;
+    FSC_U16 End;
+    FSC_U16 Count;
 } StateLog;
 
 /**
@@ -74,7 +74,7 @@ FSC_BOOL ReadStateLog(StateLog *log, FSC_U16 *state,
  * @param bufLen Available space in data buffer
  * @return Number of bytes written into buffer
  */
-FSC_U32 GetStateLog(StateLog *log, FSC_U8 *data, FSC_U8 bufLen);
+FSC_U32 GetStateLog(StateLog *log, FSC_U8 *data, FSC_U16 bufLen);
 
 /**
  * @brief Check state of log, whether Full or Empty.

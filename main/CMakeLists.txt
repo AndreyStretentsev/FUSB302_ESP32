@@ -1,4 +1,13 @@
-set(COMPONENT_SRCS "main.c")
-set(COMPONENT_ADD_INCLUDEDIRS ".")
+file(GLOB project_SRC
+    "*.c"
+    "core/*.c"
+    "core/vdm/*.c"
+    "core/modules/*.c"
+)
 
-register_component()
+
+idf_component_register(
+    SRCS ${project_SRC}
+    INCLUDE_DIRS "." "core" "core/modules" "core/vdm"
+)
+message("${project_SRC}")

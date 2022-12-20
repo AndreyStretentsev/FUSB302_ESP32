@@ -1,0 +1,134 @@
+{
+    "actionButtons": {
+        "loadNpmCommands": false,
+        "defaultColor": "white",
+        "reloadButton": "Reload",
+        "commands": [
+            {
+                "name": "Build",
+                "color": "white",
+                "command": "idf.py build"
+            },
+            {
+                "name": "Run",
+                "color": "white",
+                "command": "idf.py -p COM4 flash"
+            },
+            {
+                "name": "Monitor",
+                "color": "white",
+                "command": "./idf.py -p COM4 -b 115200 monitor"
+            }
+        ]
+    },
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": [
+                "-NoExit",
+                "-command",
+                "D:/Projects/esp-idf/export.ps1"
+            ]
+        },
+        "Command Prompt": {
+            "path": [
+                "C:\\Windows\\System32\\cmd.exe",
+            ],
+            "args": [
+                "/k",
+                "D:/Projects/esp-idf/export.bat"
+            ],
+            "icon": "terminal-cmd"
+        },
+        "GitBash": {
+            "path": [
+                "D:\\Program Files\\Git\\bin\\bash.exe"
+            ],
+            "source": "Git Bash",
+            "icon": "terminal-bash",
+            "args": [
+                "D:/Projects/esp-idf/export.sh"
+            ]
+        }
+    },
+    "files.associations": {
+        "*.md": "markdown",
+        "esp_gap_ble_api.h": "c",
+        "esp_gatt_common_api.h": "c",
+        "esp_gatts_api.h": "c",
+        "esp_gattc_api.h": "c",
+        "esp_bt_main.h": "c",
+        "esp_bt.h": "c",
+        "ble.h": "c",
+        "charge_manager.h": "c",
+        "spi_master.h": "c",
+        "spi_common_internal.h": "c",
+        "freertos.h": "c",
+        "mp2695.h": "c",
+        "random": "c",
+        "adc_simple.h": "c",
+        "bus_i2c.h": "c",
+        "*.ipp": "c",
+        "pi5usb30216c.h": "c",
+        "timers.h": "c",
+        "wifi_config.h": "c",
+        "esp_wifi.h": "c",
+        "esp_event.h": "c",
+        "wifi_ap_config.h": "c",
+        "typeinfo": "c",
+        "fusb302.h": "c",
+        "pd_protocol.h": "c",
+        "*.tcc": "c",
+        "regex": "c",
+        "integrations.h": "c",
+        "chrono": "c",
+        "uart.h": "c",
+        "tcp_server.h": "c",
+        "esp_timer.h": "c",
+        "esp_timer_impl.h": "c",
+        "gpio.h": "c",
+        "sgm41511.h": "c",
+        "array": "c",
+        "memory": "c",
+        "future": "c",
+        "istream": "c",
+        "functional": "c",
+        "tuple": "c",
+        "utility": "c",
+        "freertosconfig.h": "c",
+        "usb_tcpm.h": "c",
+        "ratio": "c",
+        "integrations_defs.h": "c",
+        "gpio_types.h": "c",
+        "utils.h": "c",
+        "fsctypes.h": "c",
+        "platform.h": "c",
+        "log.h": "c",
+        "defines.h": "c",
+        "task.h": "c"
+    },
+    "actionButtons": {
+        "loadNpmCommands": false,
+        "defaultColor": "white",
+        "reloadButton": "Reload",
+        "commands": [
+            {
+                "name": "Build",
+                "color": "white",
+                "command": "idf.py build", 
+            },
+            {
+                "name": "Run",
+                "color": "white",
+                "command": "idf.py -p COM10 flash",
+            },
+            {
+                "name": "Monitor",
+                "color": "white",
+                "command": "idf.py -p COM10 monitor",
+            }
+        ]
+    },
+    "C_Cpp.dimInactiveRegions": true
+}

@@ -42,8 +42,8 @@
 /* VIF Product */
 #define Connector_Type 2              /* 0: Type-A, 1: Type-B, 2: Type-C */
 #define USB_PD_Support YES
-#define PD_Port_Type 4                /* 0: C, 1: C/P, 2: P/C, 3: P, 4: DRP */
-#define Type_C_State_Machine 2        /* 0: Src, 1: Snk, 2: DRP */
+#define PD_Port_Type 0                /* 0: C, 1: C/P, 2: P/C, 3: P, 4: DRP */
+#define Type_C_State_Machine 0        /* 0: Src, 1: Snk, 2: DRP */
 #define Port_Battery_Powered NO
 #define BC_1_2_Support 0
 
@@ -55,9 +55,9 @@
 #define SOP_P_Debug_Capable NO              /* Not Currently Implemented */
 #define SOP_PP_Debug_Capable NO             /* Not Currently Implemented */
 #define USB_Comms_Capable NO
-#define DR_Swap_To_DFP_Supported YES
-#define DR_Swap_To_UFP_Supported YES
-#define Unconstrained_Power YES
+#define DR_Swap_To_DFP_Supported NO
+#define DR_Swap_To_UFP_Supported NO
+#define Unconstrained_Power NO
 #define VCONN_Swap_To_On_Supported YES
 #define VCONN_Swap_To_Off_Supported YES
 #define Responds_To_Discov_SOP_UFP YES
@@ -151,23 +151,23 @@
 #define Src_PDO_Max_Power7 0                //; 0 W
 
 /* Sink Tab */
-#define PD_Power_as_Sink 900                //; 900mA
+#define PD_Power_as_Sink 3000                //; 3000mA
 #define No_USB_Suspend_May_Be_Set NO
 #define GiveBack_May_Be_Set NO
 #define Higher_Capability_Set NO
 
-#define NUMBER_OF_SNK_PDOS_ENABLED  1
+#define NUMBER_OF_SNK_PDOS_ENABLED  2
 
 #define Snk_PDO_Supply_Type1 0              //; 0: Fixed
 #define Snk_PDO_Voltage1 100                //; 5V
-#define Snk_PDO_Op_Current1 10              //; 100mA
+#define Snk_PDO_Op_Current1 300              //; 3000mA
 #define Snk_PDO_Min_Voltage1 0              //; 0 V
 #define Snk_PDO_Max_Voltage1 0              //; 0 V
 #define Snk_PDO_Op_Power1 0                 //; 0 W
 
 #define Snk_PDO_Supply_Type2 0              //; 0: Fixed
 #define Snk_PDO_Voltage2 180                //; 9V
-#define Snk_PDO_Op_Current2 10              //; 100mA
+#define Snk_PDO_Op_Current2 200              //; 2000mA
 #define Snk_PDO_Min_Voltage2 0              //; 0 V
 #define Snk_PDO_Max_Voltage2 0              //; 0 V
 #define Snk_PDO_Op_Power2 0                 //; 0 W
@@ -208,8 +208,8 @@
 #define Snk_PDO_Op_Power7 0                 //; 0 W
 
 /* Dual Role Tab */
-#define Accepts_PR_Swap_As_Src YES
-#define Accepts_PR_Swap_As_Snk YES
+#define Accepts_PR_Swap_As_Src NO
+#define Accepts_PR_Swap_As_Snk NO
 #define Requests_PR_Swap_As_Src NO
 #define Requests_PR_Swap_As_Snk NO
 

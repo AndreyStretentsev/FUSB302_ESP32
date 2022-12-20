@@ -23,9 +23,7 @@
  * This is a set of stubs for no platform in particular, or a starting point
  * for a new platform.
  */
-#ifdef PLATFORM_NONE
-#include "FSCTypes.h"
-#endif /* PLATFORM_NONE */
+#include "../FSCTypes.h"
 
 /*
  * PLATFORM_PIC32
@@ -116,6 +114,9 @@ typedef enum
     ALERT_EVENT        =       0x00000400,
     EVENT_ALL          =       0xFFFFFFFF,
 } Events_t;
+
+void platform_log_init();
+FSC_U32 platform_get_log(FSC_U8 *data, FSC_U16 len);
 
 /**
  * @brief Set or return the current vbus voltage level as implemented by

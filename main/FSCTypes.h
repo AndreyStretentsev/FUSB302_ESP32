@@ -29,6 +29,8 @@
     #define __PACKED
 #endif
 
+#define FSC_HAVE_SNK
+#define FSC_DEBUG
 typedef enum _BOOL { FALSE = 0, TRUE } FSC_BOOL;
 
 /* system default */
